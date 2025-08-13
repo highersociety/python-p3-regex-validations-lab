@@ -1,25 +1,12 @@
 import re
 
-# NAME:
-# - First and last names start with uppercase letters
-# - Allows letters, apostrophes, hyphens, and prefixes like Mc
-# - Requires exactly two words (first + last)
-name = re.compile(
-    r"^[A-Z][a-zA-Z'-]+ [A-Z][a-zA-Z'-]+$"
-)
+# Matches names with only letters and spaces (no numbers or special chars)
+# Allows multiple words (e.g., "John Doe", "Mary Ann Smith")
+name_regex = r"^[A-Za-z]+(?: [A-Za-z]+)*$"
 
-# PHONE NUMBER:
-# - Allows optional country code (+1 or +44 etc.)
-# - Handles (123) 456-7890, 123-456-7890, 123 456 7890
-# - Allows +1-123-456-7890, +1 (123) 456-7890, etc.
-phone_number = re.compile(
-    r"^(\+\d{1,3}[- ]?)?(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$"
-)
+# Matches phone numbers with optional + at start, then 10–15 digits
+# Example: +254712345678, 0712345678
+phone_regex = r"^\+?[0-9]{10,15}$"
 
-# EMAIL ADDRESS:
-# - Username allows letters, digits, dots, underscores, hyphens
-# - Domain allows letters, digits, hyphens, and dots for subdomains
-# - TLD: at least 2 letters (supports .co.uk, .info, etc.)
-email_address = re.compile(
-    r"^[\w\.-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"
-)
+# Matches standard emails: letters/numbers, dots, hyphens allowed before @ and domain
+email_regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"

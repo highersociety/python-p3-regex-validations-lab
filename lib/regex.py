@@ -1,16 +1,29 @@
 import re
 
-# Matches names like "John Cena", "D'Angelo", "Anya Taylor-Joy"
+# Name regex:
+# - First letter uppercase
+# - May contain lowercase letters
+# - Apostrophe or hyphen may appear followed by uppercase + lowercase
+# - One single space between name parts
 name_regex = re.compile(
-    r"^[A-Z][a-z]+(?:['-][A-Z][a-z]+)*(?: [A-Z][a-z]+(?:['-][A-Z][a-z]+)*)*$"
+    r"^[A-Z][a-z]*(?:['-][A-Z][a-z]*)*(?: [A-Z][a-z]*(?:['-][A-Z][a-z]*)*)*$"
 )
 
-# Matches phone formats: "5555555555", "555-555-5555", "(555) 555-5555"
+# Phone regex:
+# Matches:
+# - 5555555555
+# - 555-555-5555
+# - (555) 555-5555
+# No double dashes allowed
 phone_regex = re.compile(
-    r"^(?:\(\d{3}\)\s|\d{3}-)?\d{3}-?\d{4}$"
+    r"^(?:\d{10}|\(\d{3}\) \d{3}-\d{4}|\d{3}-\d{3}-\d{4})$"
 )
 
-# Matches emails like "john.cena@wwe.com", "john.cena123@wwe.com"
+# Email regex:
+# - Starts with letter
+# - Local part can have letters, numbers, dots
+# - Single @
+# - Domain letters only, TLD at least 2 letters
 email_regex = re.compile(
     r"^[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)*@[A-Za-z]+\.[A-Za-z]{2,}$"
 )

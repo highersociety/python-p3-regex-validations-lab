@@ -1,12 +1,16 @@
 import re
 
-# Matches names with only letters and spaces (no numbers or special chars)
-# Allows multiple words (e.g., "John Doe", "Mary Ann Smith")
-name_regex = r"^[A-Za-z]+(?: [A-Za-z]+)*$"
+# Matches names like "John Cena", "D'Angelo", "Anya Taylor-Joy"
+name_regex = re.compile(
+    r"^[A-Z][a-z]+(?:['-][A-Z][a-z]+)*(?: [A-Z][a-z]+(?:['-][A-Z][a-z]+)*)*$"
+)
 
-# Matches phone numbers with optional + at start, then 10–15 digits
-# Example: +254712345678, 0712345678
-phone_regex = r"^\+?[0-9]{10,15}$"
+# Matches phone formats: "5555555555", "555-555-5555", "(555) 555-5555"
+phone_regex = re.compile(
+    r"^(?:\(\d{3}\)\s|\d{3}-)?\d{3}-?\d{4}$"
+)
 
-# Matches standard emails: letters/numbers, dots, hyphens allowed before @ and domain
-email_regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+# Matches emails like "john.cena@wwe.com", "john.cena123@wwe.com"
+email_regex = re.compile(
+    r"^[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)*@[A-Za-z]+\.[A-Za-z]{2,}$"
+)

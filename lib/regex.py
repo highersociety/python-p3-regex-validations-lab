@@ -15,3 +15,11 @@ name = re.compile(
 phone_number = re.compile(
     r"^(\+\d{1,3}[- ]?)?(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$"
 )
+
+# EMAIL ADDRESS:
+# - Username allows letters, digits, dots, underscores, hyphens
+# - Domain allows letters, digits, hyphens, and dots for subdomains
+# - TLD: at least 2 letters (supports .co.uk, .info, etc.)
+email_address = re.compile(
+    r"^[\w\.-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"
+)
